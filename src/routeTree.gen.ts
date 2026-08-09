@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as HistoryRouteImport } from './routes/history'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as SeasonalRouteImport } from './routes/seasonal'
 import { Route as WatchlistRouteImport } from './routes/watchlist'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const DiscoverRoute = DiscoverRouteImport.update({
   id: '/discover',
   path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -44,6 +50,7 @@ const WatchlistRoute = WatchlistRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
+  '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
   '/seasonal': typeof SeasonalRoute
   '/watchlist': typeof WatchlistRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
+  '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
   '/seasonal': typeof SeasonalRoute
   '/watchlist': typeof WatchlistRoute
@@ -59,21 +67,31 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
+  '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
   '/seasonal': typeof SeasonalRoute
   '/watchlist': typeof WatchlistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/discover' | '/home' | '/seasonal' | '/watchlist'
+  fullPaths:
+    '/' | '/discover' | '/history' | '/home' | '/seasonal' | '/watchlist'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/discover' | '/home' | '/seasonal' | '/watchlist'
-  id: '__root__' | '/' | '/discover' | '/home' | '/seasonal' | '/watchlist'
+  to: '/' | '/discover' | '/history' | '/home' | '/seasonal' | '/watchlist'
+  id:
+    | '__root__'
+    | '/'
+    | '/discover'
+    | '/history'
+    | '/home'
+    | '/seasonal'
+    | '/watchlist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiscoverRoute: typeof DiscoverRoute
+  HistoryRoute: typeof HistoryRoute
   HomeRoute: typeof HomeRoute
   SeasonalRoute: typeof SeasonalRoute
   WatchlistRoute: typeof WatchlistRoute
@@ -93,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/discover'
       fullPath: '/discover'
       preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -122,6 +147,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiscoverRoute: DiscoverRoute,
+  HistoryRoute: HistoryRoute,
   HomeRoute: HomeRoute,
   SeasonalRoute: SeasonalRoute,
   WatchlistRoute: WatchlistRoute,
