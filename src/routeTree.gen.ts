@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SeasonalRouteImport } from './routes/seasonal'
 import { Route as WatchlistRouteImport } from './routes/watchlist'
@@ -36,6 +37,11 @@ const HistoryRoute = HistoryRouteImport.update({
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/discover': typeof DiscoverRoute
   '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/seasonal': typeof SeasonalRoute
   '/watchlist': typeof WatchlistRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/discover': typeof DiscoverRoute
   '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/seasonal': typeof SeasonalRoute
   '/watchlist': typeof WatchlistRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/discover': typeof DiscoverRoute
   '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/seasonal': typeof SeasonalRoute
   '/watchlist': typeof WatchlistRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/discover'
     | '/history'
     | '/home'
+    | '/login'
     | '/profile'
     | '/seasonal'
     | '/watchlist'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/discover'
     | '/history'
     | '/home'
+    | '/login'
     | '/profile'
     | '/seasonal'
     | '/watchlist'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/discover'
     | '/history'
     | '/home'
+    | '/login'
     | '/profile'
     | '/seasonal'
     | '/watchlist'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   DiscoverRoute: typeof DiscoverRoute
   HistoryRoute: typeof HistoryRoute
   HomeRoute: typeof HomeRoute
+  LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
   SeasonalRoute: typeof SeasonalRoute
   WatchlistRoute: typeof WatchlistRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoverRoute: DiscoverRoute,
   HistoryRoute: HistoryRoute,
   HomeRoute: HomeRoute,
+  LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
   SeasonalRoute: SeasonalRoute,
   WatchlistRoute: WatchlistRoute,
