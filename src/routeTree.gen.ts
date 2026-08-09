@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SeasonalRouteImport } from './routes/seasonal'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as WatchlistRouteImport } from './routes/watchlist'
+import { Route as AnimeAnimeIdRouteImport } from './routes/anime.$animeId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeasonalRoute = SeasonalRouteImport.update({
+  id: '/seasonal',
+  path: '/seasonal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WatchlistRoute = WatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimeAnimeIdRoute = AnimeAnimeIdRouteImport.update({
+  id: '/anime/$animeId',
+  path: '/anime/$animeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/seasonal': typeof SeasonalRoute
+  '/signup': typeof SignupRoute
+  '/watchlist': typeof WatchlistRoute
+  '/anime/$animeId': typeof AnimeAnimeIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/seasonal': typeof SeasonalRoute
+  '/signup': typeof SignupRoute
+  '/watchlist': typeof WatchlistRoute
+  '/anime/$animeId': typeof AnimeAnimeIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/seasonal': typeof SeasonalRoute
+  '/signup': typeof SignupRoute
+  '/watchlist': typeof WatchlistRoute
+  '/anime/$animeId': typeof AnimeAnimeIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/discover'
+    | '/history'
+    | '/home'
+    | '/login'
+    | '/profile'
+    | '/seasonal'
+    | '/signup'
+    | '/watchlist'
+    | '/anime/$animeId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/discover'
+    | '/history'
+    | '/home'
+    | '/login'
+    | '/profile'
+    | '/seasonal'
+    | '/signup'
+    | '/watchlist'
+    | '/anime/$animeId'
+  id:
+    | '__root__'
+    | '/'
+    | '/discover'
+    | '/history'
+    | '/home'
+    | '/login'
+    | '/profile'
+    | '/seasonal'
+    | '/signup'
+    | '/watchlist'
+    | '/anime/$animeId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiscoverRoute: typeof DiscoverRoute
+  HistoryRoute: typeof HistoryRoute
+  HomeRoute: typeof HomeRoute
+  LoginRoute: typeof LoginRoute
+  ProfileRoute: typeof ProfileRoute
+  SeasonalRoute: typeof SeasonalRoute
+  SignupRoute: typeof SignupRoute
+  WatchlistRoute: typeof WatchlistRoute
+  AnimeAnimeIdRoute: typeof AnimeAnimeIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +169,84 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seasonal': {
+      id: '/seasonal'
+      path: '/seasonal'
+      fullPath: '/seasonal'
+      preLoaderRoute: typeof SeasonalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anime/$animeId': {
+      id: '/anime/$animeId'
+      path: '/anime/$animeId'
+      fullPath: '/anime/$animeId'
+      preLoaderRoute: typeof AnimeAnimeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiscoverRoute: DiscoverRoute,
+  HistoryRoute: HistoryRoute,
+  HomeRoute: HomeRoute,
+  LoginRoute: LoginRoute,
+  ProfileRoute: ProfileRoute,
+  SeasonalRoute: SeasonalRoute,
+  SignupRoute: SignupRoute,
+  WatchlistRoute: WatchlistRoute,
+  AnimeAnimeIdRoute: AnimeAnimeIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
