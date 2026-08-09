@@ -16,6 +16,7 @@ import { Route as HomeRouteImport } from './routes/home'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SeasonalRouteImport } from './routes/seasonal'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as WatchlistRouteImport } from './routes/watchlist'
 import { Route as AnimeAnimeIdRouteImport } from './routes/anime.$animeId'
 
@@ -54,6 +55,11 @@ const SeasonalRoute = SeasonalRouteImport.update({
   path: '/seasonal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WatchlistRoute = WatchlistRouteImport.update({
   id: '/watchlist',
   path: '/watchlist',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/seasonal': typeof SeasonalRoute
+  '/signup': typeof SignupRoute
   '/watchlist': typeof WatchlistRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/seasonal': typeof SeasonalRoute
+  '/signup': typeof SignupRoute
   '/watchlist': typeof WatchlistRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/seasonal': typeof SeasonalRoute
+  '/signup': typeof SignupRoute
   '/watchlist': typeof WatchlistRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/seasonal'
+    | '/signup'
     | '/watchlist'
     | '/anime/$animeId'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/seasonal'
+    | '/signup'
     | '/watchlist'
     | '/anime/$animeId'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/seasonal'
+    | '/signup'
     | '/watchlist'
     | '/anime/$animeId'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
   SeasonalRoute: typeof SeasonalRoute
+  SignupRoute: typeof SignupRoute
   WatchlistRoute: typeof WatchlistRoute
   AnimeAnimeIdRoute: typeof AnimeAnimeIdRoute
 }
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SeasonalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/watchlist': {
       id: '/watchlist'
       path: '/watchlist'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
   SeasonalRoute: SeasonalRoute,
+  SignupRoute: SignupRoute,
   WatchlistRoute: WatchlistRoute,
   AnimeAnimeIdRoute: AnimeAnimeIdRoute,
 }

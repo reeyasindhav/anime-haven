@@ -70,7 +70,7 @@ export function SectionHeading({
       <h2 className="font-display text-2xl font-bold tracking-tight">{title}</h2>
       {action && to ? (
         <Link
-          to={to}
+          to={to as never}
           className="shrink-0 text-sm font-semibold text-muted-foreground transition-all hover:text-primary"
         >
           {action} →
