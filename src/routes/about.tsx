@@ -200,12 +200,12 @@ function AboutPage() {
               Questions, feedback, press, or just want to talk anime? We read every message.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="mailto:hello@aniverse.demo"
+              <a
+                href="mailto:hello@aniverse.demo"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 font-bold text-primary-foreground shadow-coral transition-all hover:-translate-y-1 hover:shadow-glow"
               >
                 hello@aniverse.demo
-              </Link>
+              </a>
               <Link
                 to="/signup"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-7 py-4 font-bold transition-all hover:border-primary hover:gap-4"
