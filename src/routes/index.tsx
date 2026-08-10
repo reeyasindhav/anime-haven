@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarDays, Compass, History, Play, Star } from "lucide-react";
 import { ANIME } from "@/data/anime";
 import { Logo } from "@/components/AppShell";
+import { AnimeCard } from "@/components/AnimeCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,6 +78,7 @@ function Landing() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-sun/5" />
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
           <div className="stagger min-w-0">
             <p className="eyebrow">The anime universe, uncluttered</p>
@@ -85,14 +87,14 @@ function Landing() {
               <br />
               <span className="text-primary">in one place.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground text-balance">
               Streaming, the seasonal calendar, community ratings and your watch history — stitched
               into a single space that actually looks like it belongs to anime culture.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 to="/home"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 font-bold text-primary-foreground shadow-coral transition-transform hover:-translate-y-1"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 font-bold text-primary-foreground shadow-coral transition-all hover:-translate-y-1 hover:shadow-glow"
               >
                 <Play className="h-4 w-4 fill-current" /> Start exploring
               </Link>
@@ -174,7 +176,7 @@ function Landing() {
           {features.map((f, i) => (
             <div
               key={f.title}
-              className="stagger rounded-3xl border border-border bg-card p-7 card-lift"
+              className="stagger rounded-3xl border border-border bg-card p-7 card-lift animate-pop"
               style={{ animationDelay: `${i * 90}ms` }}
             >
               <span className="grid h-12 w-12 place-items-center rounded-2xl bg-lilac">
@@ -197,24 +199,7 @@ function Landing() {
         </div>
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
           {ANIME.slice(0, 5).map((a, i) => (
-            <Link
-              key={a.id}
-              to="/anime/$animeId"
-              params={{ animeId: a.id }}
-              className="stagger group"
-              style={{ animationDelay: `${i * 70}ms` }}
-            >
-              <div className="overflow-hidden rounded-2xl card-lift">
-                <img
-                  src={a.poster}
-                  alt={a.title}
-                  loading="lazy"
-                  className="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="mt-3 truncate font-display font-bold">{a.title}</h3>
-              <p className="truncate text-sm text-muted-foreground">{a.genres.join(" · ")}</p>
-            </Link>
+            <AnimeCard key={a.id} anime={a} index={i} />
           ))}
         </div>
       </section>
@@ -237,7 +222,7 @@ function Landing() {
             </p>
             <Link
               to="/signup"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 font-bold text-ink-foreground transition-transform hover:-translate-y-1"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 font-bold text-ink-foreground transition-all hover:-translate-y-1 hover:shadow-soft"
             >
               Create your account →
             </Link>
@@ -259,6 +244,15 @@ function Landing() {
             </Link>
             <Link to="/watchlist" className="hover:text-primary">
               Watchlist
+            </Link>
+            <Link to="/privacy" className="hover:text-primary">
+              Privacy
+            </Link>
+            <Link to="/terms" className="hover:text-primary">
+              Terms
+            </Link>
+            <Link to="/about" className="hover:text-primary">
+              About
             </Link>
             <Link to="/login" className="hover:text-primary">
               Log in

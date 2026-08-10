@@ -57,7 +57,7 @@ function Watchlist() {
           </p>
           <Link
             to="/discover"
-            className="mt-7 inline-flex rounded-full bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-coral transition-transform hover:-translate-y-1"
+            className="mt-7 inline-flex rounded-full bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-coral transition-all hover:-translate-y-1 hover:shadow-glow"
           >
             Discover shows →
           </Link>

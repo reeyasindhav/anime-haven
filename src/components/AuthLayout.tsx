@@ -44,9 +44,7 @@ export function AuthLayout({
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-12">
           <p className="text-xs font-bold tracking-[0.2em] text-sun">✦ NOW STREAMING</p>
-          <p className="mt-3 font-display text-4xl font-bold text-ink-foreground">
-            {art.title}
-          </p>
+          <p className="mt-3 font-display text-4xl font-bold text-ink-foreground">{art.title}</p>
           <p className="mt-2 max-w-md text-ink-muted">{art.synopsis.slice(0, 120)}…</p>
         </div>
       </div>
@@ -74,7 +72,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           <input
             required
             placeholder="Riya"
-            className="mt-2 h-12 w-full rounded-xl border border-border bg-card px-4 outline-none transition-shadow focus:border-primary focus:ring-4 focus:ring-primary/15"
+            className="mt-2 h-12 w-full rounded-xl border border-border bg-card px-4 outline-none transition-all focus:border-primary focus:shadow-coral/30 focus:ring-4 focus:ring-primary/15"
           />
         </label>
       )}
@@ -84,7 +82,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           type="email"
           required
           placeholder="you@aniverse.tv"
-          className="mt-2 h-12 w-full rounded-xl border border-border bg-card px-4 outline-none transition-shadow focus:border-primary focus:ring-4 focus:ring-primary/15"
+          className="mt-2 h-12 w-full rounded-xl border border-border bg-card px-4 outline-none transition-all focus:border-primary focus:shadow-coral/30 focus:ring-4 focus:ring-primary/15"
         />
       </label>
       <label className="block">
@@ -93,12 +91,12 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           type="password"
           required
           placeholder="••••••••"
-          className="mt-2 h-12 w-full rounded-xl border border-border bg-card px-4 outline-none transition-shadow focus:border-primary focus:ring-4 focus:ring-primary/15"
+          className="mt-2 h-12 w-full rounded-xl border border-border bg-card px-4 outline-none transition-all focus:border-primary focus:shadow-coral/30 focus:ring-4 focus:ring-primary/15"
         />
       </label>
       <button
         type="submit"
-        className="mt-2 w-full rounded-xl bg-primary py-4 font-bold text-primary-foreground shadow-coral transition-transform hover:-translate-y-1"
+        className="mt-2 w-full rounded-xl bg-primary py-4 font-bold text-primary-foreground shadow-coral transition-all hover:-translate-y-1 hover:shadow-glow"
       >
         {mode === "login" ? "Log in" : "Create account"}
       </button>

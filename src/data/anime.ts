@@ -141,8 +141,8 @@ export const ANIME: Anime[] = [
     studio: "Aoi Line",
     synopsis:
       "Every winter a village sings to keep the mountain asleep. This year the choir is one voice short, and the replacement can hear what the mountain is dreaming.",
-    poster: img("photo-1518709268805-4e9042af2176"),
-    banner: img("photo-1518709268805-4e9042af2176", 1600),
+    poster: img("photo-1499346030926-9a72daac6c63"),
+    banner: img("photo-1499346030926-9a72daac6c63", 1600),
     members: "118K",
     mood: "Haunting",
   },

@@ -50,7 +50,7 @@ function Seasonal() {
         </div>
       </header>
 
-      <div className="mt-10 overflow-x-auto">
+      <div className="mt-10 overflow-x-auto no-scrollbar">
         <div className="flex min-w-max border-b border-border">
           {SCHEDULE.map((s, i) => (
             <button

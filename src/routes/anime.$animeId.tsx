@@ -89,7 +89,7 @@ function Detail() {
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 onClick={() => toast.success(`Now playing · ${anime.title} Ep 01`)}
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-coral transition-transform hover:-translate-y-1"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-coral transition-all hover:-translate-y-1 hover:shadow-glow"
               >
                 <Play className="h-4 w-4 fill-current" /> Watch episode 1
               </button>
@@ -117,7 +117,7 @@ function Detail() {
             {Array.from({ length: Math.min(6, anime.episodes) }).map((_, i) => (
               <div
                 key={i}
-                className="stagger grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-border p-3 transition-all hover:-translate-y-0.5 hover:border-primary/50"
+                className="stagger grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-border p-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-soft"
                 style={{ animationDelay: `${i * 50}ms` }}
               >
                 <img
@@ -127,9 +127,7 @@ function Detail() {
                   className="h-14 w-24 shrink-0 rounded-xl object-cover"
                 />
                 <div className="min-w-0">
-                  <p className="truncate font-semibold">
-                    Episode {String(i + 1).padStart(2, "0")}
-                  </p>
+                  <p className="truncate font-semibold">Episode {String(i + 1).padStart(2, "0")}</p>
                   <p className="truncate text-sm text-muted-foreground">
                     {anime.mood} · 24 min · Subbed & dubbed
                   </p>
@@ -137,7 +135,7 @@ function Detail() {
                 <button
                   onClick={() => toast.success(`Playing episode ${i + 1}`)}
                   aria-label={`Play episode ${i + 1}`}
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary transition-all hover:bg-primary hover:text-primary-foreground hover:scale-110"
                 >
                   <Play className="h-4 w-4 fill-current" />
                 </button>

@@ -79,14 +79,14 @@ function HistoryPage() {
                   to="/anime/$animeId"
                   params={{ animeId: a.id }}
                   aria-label={`Rewatch ${a.title}`}
-                  className="grid h-9 w-9 place-items-center rounded-full bg-secondary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  className="grid h-9 w-9 place-items-center rounded-full bg-secondary transition-all hover:bg-primary hover:text-primary-foreground hover:scale-110"
                 >
                   <Play className="h-4 w-4 fill-current" />
                 </Link>
                 <button
                   onClick={() => setItems((list) => list.filter((x) => x !== h))}
                   aria-label={`Remove ${a.title} from history`}
-                  className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-destructive hover:text-destructive"
+                  className="grid h-9 w-9 place-items-center rounded-full border border-border transition-all hover:border-destructive hover:text-destructive hover:scale-110"
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>
@@ -96,7 +96,10 @@ function HistoryPage() {
         })}
         {items.length === 0 && (
           <div className="rounded-[1.75rem] border border-dashed border-border bg-card p-16 text-center animate-pop">
-            <h2 className="font-display text-2xl font-bold">History cleared</h2>
+            <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-lilac">
+              <Clock3 className="h-6 w-6 text-lilac-foreground" />
+            </span>
+            <h2 className="mt-5 font-display text-2xl font-bold">History cleared</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Start watching and your timeline rebuilds itself.
             </p>

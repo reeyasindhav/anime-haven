@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { Compass } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { AnimeCard } from "@/components/AnimeCard";
 import { ANIME, GENRES } from "@/data/anime";
@@ -67,7 +68,7 @@ function Discover() {
               className={cn(
                 "rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300",
                 genre === g
-                  ? "border-ink bg-ink text-ink-foreground"
+                  ? "border-ink bg-ink text-ink-foreground shadow-coral"
                   : "border-border bg-card text-foreground hover:border-primary hover:text-primary",
               )}
             >
@@ -78,7 +79,7 @@ function Discover() {
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value as (typeof sorts)[number])}
-          className="h-11 rounded-full border border-border bg-card px-5 text-sm font-semibold outline-none focus:border-primary"
+          className="h-11 rounded-full border border-border bg-card px-5 text-sm font-semibold outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/15"
           aria-label="Sort shows"
         >
           {sorts.map((s) => (
@@ -98,9 +99,14 @@ function Discover() {
       </div>
 
       {shows.length === 0 && (
-        <div className="mt-16 rounded-3xl border border-dashed border-border bg-card p-16 text-center">
-          <p className="font-display text-xl font-bold">Nothing here yet</p>
-          <p className="mt-2 text-sm text-muted-foreground">Try a different genre filter.</p>
+        <div className="mt-16 rounded-3xl border border-dashed border-border bg-card p-16 text-center animate-pop">
+          <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-lilac">
+            <Compass className="h-6 w-6 text-lilac-foreground" />
+          </span>
+          <h2 className="mt-5 font-display text-2xl font-bold">Nothing here yet</h2>
+          <p className="mx-auto mt-2 max-w-sm text-sm text-muted-foreground">
+            Try a different genre filter.
+          </p>
         </div>
       )}
     </AppShell>

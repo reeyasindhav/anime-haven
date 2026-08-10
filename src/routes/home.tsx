@@ -50,7 +50,7 @@ function HomePage() {
             <Link
               to="/anime/$animeId"
               params={{ animeId: hero.id }}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-coral transition-transform hover:-translate-y-1"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-coral transition-all hover:-translate-y-1 hover:shadow-glow"
             >
               <Play className="h-4 w-4 fill-current" /> Start exploring
             </Link>

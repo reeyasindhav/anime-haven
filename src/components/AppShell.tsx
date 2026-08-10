@@ -6,7 +6,7 @@ import {
   Heart,
   Home,
   Search,
-  Sparkles,
+  Zap,
   UserRound,
   Menu,
   X,
@@ -71,7 +71,7 @@ function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   );
 
   return (
-    <nav className="flex flex-1 flex-col gap-8 px-4">
+    <nav className="flex flex-1 flex-col gap-8 px-4 pt-6">
       <div className="space-y-1">
         <p className="px-4 pb-2 text-[11px] font-bold tracking-[0.18em] text-ink-muted">BROWSE</p>
         {nav.map((n) => item(n.to, n.label, n.icon))}
@@ -90,15 +90,18 @@ function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
 
 function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
-    <div className="flex h-full flex-col bg-sidebar py-7">
-      <div className="px-6 pb-10">
-        <Logo />
+    <div className="flex h-full flex-col bg-sidebar">
+      <div className="relative border-b border-sidebar-border">
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-primary via-sun to-lilac" />
+        <div className="px-6 pb-6 pt-8">
+          <Logo />
+        </div>
       </div>
       <NavList onNavigate={onNavigate} />
-      <div className="mt-auto space-y-4 px-4 pt-8">
-        <div className="relative overflow-hidden rounded-2xl bg-sidebar-accent p-5">
+      <div className="mt-auto space-y-4 px-4 pt-8 pb-6">
+        <div className="relative overflow-hidden rounded-2xl bg-sidebar-accent p-5 transition-all duration-300 hover:shadow-soft">
           <span className="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-sun/80 animate-float" />
-          <Sparkles className="relative h-5 w-5 text-sun" />
+          <Zap className="relative h-5 w-5 text-sun" />
           <p className="relative mt-3 font-display text-lg font-bold leading-tight text-ink-foreground">
             Find your next
             <br />
@@ -107,7 +110,7 @@ function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined })
           <Link
             to="/discover"
             onClick={onNavigate}
-            className="relative mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-3 transition-all"
+            className="relative mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all hover:gap-3"
           >
             Explore →
           </Link>
@@ -115,7 +118,7 @@ function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined })
         <Link
           to="/profile"
           onClick={onNavigate}
-          className="flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-sidebar-accent"
+          className="flex items-center gap-3 rounded-xl px-2 py-2.5 transition-colors hover:bg-sidebar-accent"
         >
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-sun font-display font-bold text-sun-foreground">
             R
@@ -157,7 +160,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle navigation"
-              className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-card lg:hidden"
+              className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-card transition-all hover:border-primary hover:text-primary lg:hidden"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -165,27 +168,29 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 placeholder="Search anime, characters..."
-                className="h-11 w-full rounded-full border border-border bg-card pl-11 pr-4 text-sm outline-none transition-shadow placeholder:text-muted-foreground focus:border-primary/60 focus:shadow-coral/30 focus:ring-4 focus:ring-primary/15"
+                className="h-11 w-full rounded-full border border-border bg-card pl-11 pr-4 text-sm outline-none transition-all placeholder:text-muted-foreground focus:border-primary/60 focus:shadow-coral/30 focus:ring-4 focus:ring-primary/15"
               />
             </div>
             <div className="flex shrink-0 items-center gap-3">
               <Link
                 to="/profile"
-                className="hidden h-10 w-10 place-items-center rounded-full border border-border bg-card transition-colors hover:border-primary sm:grid"
+                className="hidden h-10 w-10 place-items-center rounded-full border border-border bg-card transition-all hover:border-primary hover:text-primary sm:grid"
                 aria-label="Profile"
               >
                 <UserRound className="h-[18px] w-[18px]" />
               </Link>
               <Link
                 to="/signup"
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground shadow-coral transition-transform hover:-translate-y-0.5"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground shadow-coral transition-all hover:-translate-y-0.5 hover:shadow-glow"
               >
                 Join the club <span aria-hidden>→</span>
               </Link>
             </div>
           </div>
         </header>
-        <main className="min-w-0 flex-1 px-4 py-8 sm:px-8 sm:py-10">{children}</main>
+        <main className="min-w-0 flex-1 px-4 py-8 sm:px-8 sm:py-10">
+          <div className="mx-auto max-w-7xl">{children}</div>
+        </main>
       </div>
     </div>
   );

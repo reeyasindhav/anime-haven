@@ -1,8 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
+import { useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { ANIME } from "@/data/anime";
 import { useStore } from "@/lib/store";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
@@ -23,6 +34,7 @@ export const Route = createFileRoute("/profile")({
 function Profile() {
   const { watchlist, ratings, signedIn, setSignedIn } = useStore();
   const rated = Object.entries(ratings).filter(([, v]) => v > 0);
+  const [signOutOpen, setSignOutOpen] = useState(false);
 
   return (
     <AppShell>
@@ -35,7 +47,9 @@ function Profile() {
           <div className="min-w-0">
             <p className="text-xs font-bold tracking-[0.2em] text-primary">MEMBER SINCE 2024</p>
             <h1 className="display-title mt-2 text-4xl text-ink-foreground">Riya Sharma</h1>
-            <p className="mt-2 text-ink-muted">Slice-of-life apologist. Currently in Spring 2026.</p>
+            <p className="mt-2 text-ink-muted">
+              Slice-of-life apologist. Currently in Spring 2026.
+            </p>
           </div>
         </div>
       </section>
@@ -49,7 +63,7 @@ function Profile() {
         ].map(([v, l], i) => (
           <div
             key={l}
-            className="stagger rounded-2xl border border-border bg-card p-6 shadow-soft"
+            className="stagger rounded-2xl border border-border bg-card p-6 shadow-soft transition-all hover:border-primary/50 hover:shadow-lift"
             style={{ animationDelay: `${i * 70}ms` }}
           >
             <p className="font-display text-3xl font-bold">{v}</p>
@@ -71,7 +85,7 @@ function Profile() {
                     key={id}
                     to="/anime/$animeId"
                     params={{ animeId: id }}
-                    className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-border p-3 transition-all hover:-translate-y-0.5 hover:border-primary/50"
+                    className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-border p-3 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-soft"
                   >
                     <img
                       src={a.poster}
@@ -125,12 +139,36 @@ function Profile() {
               {signedIn ? "You're signed in on this device." : "Demo session — not signed in."}
             </p>
             {signedIn ? (
-              <button
-                onClick={() => setSignedIn(false)}
-                className="mt-5 w-full rounded-xl border border-border py-3 font-bold transition-colors hover:border-destructive hover:text-destructive"
-              >
-                Sign out
-              </button>
+              <Dialog open={signOutOpen} onOpenChange={setSignOutOpen}>
+                <DialogTrigger asChild>
+                  <button className="mt-5 w-full rounded-xl border border-border py-3 font-bold transition-colors hover:border-destructive hover:text-destructive">
+                    Sign out
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Sign out?</DialogTitle>
+                    <DialogDescription>
+                      You'll need to sign in again to sync your watchlist, ratings and history
+                      across devices.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <Button variant="outline" onClick={() => setSignOutOpen(false)}>
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      onClick={() => {
+                        setSignedIn(false);
+                        setSignOutOpen(false);
+                      }}
+                    >
+                      Sign out
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             ) : (
               <Link
                 to="/login"
